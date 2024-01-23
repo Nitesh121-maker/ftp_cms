@@ -1,0 +1,193 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.main{
+    width: 100%;
+    height: auto;
+    margin-top: 62px;
+    display: flex;
+}
+.sidewrap{
+    width: 18%;
+}
+.sidebar{
+    float: left;
+    width: 250px;
+    position: fixed;
+    height: 91.4vh;
+    background-color: #1f1f1f;
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.2); 
+}
+.sidebar-list{
+    width: 80%;
+    margin: 10% auto;
+}
+.sidebar-list li{
+    background-color: #3b3b3b;
+    width: 80%;
+    height: 35px;
+    list-style: none;
+    color: white;
+    display: flex;
+    border-radius: 10px;
+    align-items: center;
+}
+.sidebar-list li svg{
+    font-size: 30px;
+}
+.sidebar-list li a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: white;
+    text-align: left;
+    line-height: 35px;
+    border-radius: 10px;
+}
+
+/* Hover effect */
+.sidebar-list li:hover {
+    background-color: #555;
+}
+.functions{
+    width: 80%;
+    display: flex;
+    margin-left: 4%;
+}
+.add-client-form {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  height: 435px;
+  margin-top: 2%;
+  margin-left: 28px;
+  }
+  
+  .add-client-form h2 {
+    color: #333;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .form-group input {
+    width: 94%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-color: #3498db;
+  }
+  .form-group select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+  }
+  
+  .form-group select:focus {
+    outline: none;
+    border-color: #3498db;
+  } 
+  .add-client-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .add-client-btn:hover {
+    background-color: #2980b9;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .btn-text {
+    display: inline-block;
+  }
+  
+  /* Optional: Add animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .add-client-btn {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+
+  th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #3498db;
+    color: #fff;
+  }
+
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+
+  .view-btn {
+    background-color: #3498db;
+    color: #fff;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+
+  .view-btn:hover {
+    background-color: #2980b9;
+  }
+  /* .clients{
+    width: 80%;
+  } */
+  .clients h3{
+    margin-left: 20px;
+  }
+  .profile{
+    margin-top: 2%;
+  }
