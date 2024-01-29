@@ -3,15 +3,15 @@ import "../css/clients.css"
 import { useNavigate } from 'react-router'
 import Editform from "./Clienteditform"
 function Clients() {
-    const[iseditForm,seteditForm] = useState(false)
+    const [isEditForm, setEditForm] = useState(false);
     const [selectedClient, setSelectedClient] = useState(null);
     const [clients, setClientdata] = useState("");
-    function showForm() {
-        seteditForm(prevState => !prevState);
-      }
-    
+      // function showForm() {
+      //   seteditForm(prevState => !prevState);
+      // }
+     // Fetch data from the /clients endpoint
       useEffect(() => {
-        // Fetch data from the /clients endpoint
+       
         const fetchData = async () => {
           try {
             const response = await fetch('http://192.168.1.7:3002/clientdata');
@@ -35,7 +35,7 @@ function Clients() {
       const handleViewClick = (client) => {
         // Log clicked client data
         console.log('Clicked Client:', client);
-        setSelectedClient(client);
+     
         // Navigate to ClientProfile route programmatically
         navigate(`/ClientProfile/${client.clientId}`, {
           state: {
@@ -44,6 +44,18 @@ function Clients() {
           },
         });
       };
+      const handleEditClick = (client) => {
+        console.log('Clicked Client::', client);
+        setSelectedClient(client);
+        setEditForm(prevState => !prevState);
+      };
+    
+      const editButtonClick = () => {
+        if (selectedClient) {
+          handleEditClick(selectedClient);
+        }
+      };
+      
   return (
 
     <div className="Allclients">
@@ -69,7 +81,7 @@ function Clients() {
                             <td>{client.created_at}</td>
                             <td>
                                 <button onClick={() => handleViewClick(client)} className='action-btn'>View</button>
-                                <button  onClick={showForm}className="action-btn">Edit</button>
+                                <button  onClick={() => handleEditClick(client)}className="action-btn">Edit</button>
                                 {/* <a href="#"  onClick={showForm} className="action-btn">Edit</a> */}
                                 {/* <a href="/ClientProfile" className="action-btn">Download</a> */}
                             </td>
@@ -84,9 +96,9 @@ function Clients() {
             </table>
        </div>
        <div className="cllient-edit-form">
-        {iseditForm &&
-            <Editform selectedClient={selectedClient}/>
-        }
+         {isEditForm && selectedClient && (
+          <Editform selectedClient={selectedClient} />
+         )}
        </div>
     </div>
   )

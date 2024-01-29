@@ -1,6 +1,8 @@
 import React,{useEffect,useState} from 'react'
 import "../css/index.css"
-function Clienteditform({ selectedClient }) {
+function Clienteditform({ selectedClient  }) {
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
      const [formData, setFormData] = useState({
         clientName: '',
         clientEmail: '',
@@ -8,50 +10,115 @@ function Clienteditform({ selectedClient }) {
         clientPassword: '',
       });
     
-      // Update form data when selectedClient changes
+      // Update form data when selectedClient  changes
       useEffect(() => {
-        if (selectedClient) {
+        if (selectedClient ) {
           setFormData({
-            clientName: selectedClient.clientName || '',
-            clientEmail: selectedClient.clientEmail || '',
-            clientStatus: selectedClient.clientStatus || 'Active',
-            clientPassword: '', 
+            clientName: selectedClient .clientName || '',
+            clientEmail: selectedClient .clientEmail || '',
+            clientStatus: selectedClient .clientStatus || 'Active',
+            clientPassword:selectedClient .clientPassword|| '', 
           });
         }
-      }, [selectedClient]);
+      }, [selectedClient ]);
+      const handleInputChange = (e) => {
+        setFormData({
+          ...formData,
+          [e.target.name]: e.target.value,
+        });
+      };
+      const handleSubmit = async (e) => {
+        e.preventDefault();
     
+        // Example: Update client data on the server
+        try {
+          setLoading(true);
+          const response = await fetch(`http://192.168.1.7:3002/edit-client/${selectedClient.clientId}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
+    
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          const result = await response.json();
+          setSuccessMessage(result.message);
+          setLoading(false);
+        } catch (error) {
+          console.error('Error updating client data:', error);
+        }
+      };
+      useEffect(() => {
+        if (successMessage) {
+          // Automatically refresh the browser after 5 seconds
+          const timeoutId = setTimeout(() => {
+            window.location.reload();
+          }, 5000);
+    
+          // Clear the timeout when the component is unmounted or when successMessage changes
+          return () => clearTimeout(timeoutId);
+        }
+      }, [successMessage]);
   return (
     <div>
         <div className="add-client-form">
-            <form>
+            <form onSubmit={handleSubmit} method='post'>
+              {loading && (
+                <div className="progress-container">
+                  <div className="progress-bar"></div>
+                </div>
+              )}
+
+              {successMessage && <p className='edit-sucess-message'>{successMessage}</p>}
                 <h2>Edit Client Profile</h2>
 
                 <div className="form-group">
-                    <label for="clientName">Client Name:</label>
+                    <label htmlFor="clientName">Client Name:</label>
                       <input
                         type="text"
                         id="clientName"
                         name="clientName"
                         value={formData.clientName}
-                        onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
-                        required
+                        onChange={handleInputChange}
+                      
                      />
                 </div>
 
                 <div className="form-group">
-                    <label for="clientEmail">Client Email:</label>
-                    <input type="email" id="clientEmail" name="clientEmail" required/>
+                    <label htmlFor="clientEmail">Client Email:</label>
+                    <input
+                        type="text"
+                        id="clientEmail"
+                        name="clientEmail"
+                        value={formData.clientEmail}
+                        onChange={handleInputChange}
+                      
+                     />
                 </div>
                 <div className="form-group">
-                    <label for="clientStatus">Client Status:</label>
-                    <select name="Status" id="clientStatus">
-                        <option value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
+                    <label htmlFor="clientStatus">Client Status:</label>
+                    <select
+                      name="clientStatus"
+                      id="clientStatus"
+                      value={formData.clientStatus}
+                      onChange={handleInputChange}
+                    >
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>
                     </select>
                 </div>
                 <div className="form-group">
-                    <label for="clientPassword">Password:</label>
-                    <input type="password" id="clientPassword" name="clientPassword" required/>
+                    <label htmlFor="clientPassword">Password:</label>
+                    <input
+                        type="text"
+                        id="clientPassword"                        
+                        name="clientPassword"
+                        value={formData.clientPassword}
+                        onChange={handleInputChange}                     
+                      />
                 </div>
                 <button type="submit" className="add-client-btn">
                     <span className="btn-text">Edit Client</span>
