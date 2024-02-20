@@ -24,8 +24,8 @@ function Login() {
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include', // Include cookies in the request
         body: JSON.stringify(formData),
+
       });
 
       if (response.ok) {
@@ -56,8 +56,8 @@ function Login() {
             <label htmlFor="password">Password:</label>
             <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required/>
             <button type="submit" className='login-btn'>Login</button>
-            <p>or <a href="Register">Register</a></p>
-            <a href="#" className="google-login"><FontAwesomeIcon icon={faGoogle} className='google-icon'/>Continue with Google</a>
+            {/* <p>or <a href="Register">Register</a></p> */}
+            {/* <a href="#" className="google-login"><FontAwesomeIcon icon={faGoogle} className='google-icon'/>Continue with Google</a> */}
         </form>
     </div>
   )
