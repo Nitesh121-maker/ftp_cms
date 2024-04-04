@@ -1,5 +1,5 @@
 nav {
-    background-color: #3498db;;
+    background-color: #2980b9;
     padding: 15px;
     color: #fff;
     display: flex;
@@ -9,7 +9,9 @@ nav {
 
   nav h1 {
     margin: 0;
-    font-size: 1.5em;
+    font-size: 26px;
+    padding-left: 1%;
+    color: white;
   }
 
   nav ul {
@@ -46,6 +48,10 @@ nav {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 3px 18px -1px rgba(0,0,0,0.52);
+    -moz-box-shadow: 2px 3px 18px -1px rgba(0,0,0,0.52);
+    box-shadow: 2px 3px 18px -1px rgba(0,0,0,0.52);
   }
 
   .logout-btn:hover {

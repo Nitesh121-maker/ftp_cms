@@ -140,7 +140,7 @@ function Index() {
                 {isclientform &&
                     <div className="add-client-form">
                         <form method='post' onSubmit={handleClient}>
-                        {message && <p>{message}</p>}
+                        {message && <p className='error'>{message}</p>}
                         <h2>Add Client</h2>
 
                         <div className="form-group">
